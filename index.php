@@ -1,30 +1,27 @@
 <?php
 
-
-class User 
+class Conversation
 {
-    public function profile()
-    {
-        return null;
-    }
 }
 
-class Profile
-{
-    public function employment()
-    {
-        return 'Software Developer';
-    }
-}
+$object = new Conversation();
 
-$user = new User;
-
-// echo $user->profile()->employment();
-
-// $profile = $user->profile();
-
-// if ($profile) {
-//     echo $profile->employment();
+// switch (get_class($object)) {
+//     case "Conversation":
+//         $type = "started_conversation";
+//         break;
+//     case "Reply":
+//         $type = "replied_to_conversation";
+//         break;
+//     case "Comment":
+//         $type = "commented_on_lesson";
+//         break;
 // }
 
-var_dump($user?->profile()?->employment());
+$type = match (get_class($object)) {
+    'Conversation' => 'started_conversation',
+    'Reply' => 'replied_to_conversation',
+    'Comment' => 'commented_on_lesson'
+};
+
+echo $type;
