@@ -1,27 +1,32 @@
 <?php
 
-class Conversation
+class User
 {
+
+    public function __construct(protected $name)
+    {
+    }
 }
 
-$object = new Conversation();
+class Plan
+{
 
-// switch (get_class($object)) {
-//     case "Conversation":
-//         $type = "started_conversation";
-//         break;
-//     case "Reply":
-//         $type = "replied_to_conversation";
-//         break;
-//     case "Comment":
-//         $type = "commented_on_lesson";
-//         break;
-// }
+    public function __construct(protected string $name = 'monthly')
+    {
+    }
+}
 
-$type = match (get_class($object)) {
-    'Conversation' => 'started_conversation',
-    'Reply' => 'replied_to_conversation',
-    'Comment' => 'commented_on_lesson'
-};
+class Signup
+{
 
-echo $type;
+    public function __construct(protected User $user, protected Plan $plan)
+    {
+    }
+}
+
+$user = new User('john_doe');
+$plan = new Plan('Yearly');
+
+$signup = new Signup($user, $plan);
+
+var_dump(($signup));
